@@ -68,4 +68,10 @@ function respostaSelecionada(opcaoSelecionada){
     mostraPergunta();
 }
 
+function mostraResultado() {
+    caixaPerguntas.textContent = "Ex: 2049...";
+    textoResultado.textContent = historiaFinal;
+    caixaAltrnativas.textContent = "";
+}
+
 mostraPergunta();
