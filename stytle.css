@@ -1,5 +1,5 @@
 :root {
-    --cor-fundo: #01080E;
+    --cor-fundo: #001F3D;  /* Fundo azul escuro */
     --cor-principal: #0B0D20;
     --cor-secundaria: #212333;
     --cor-destaque: #2BDEFD;
@@ -13,22 +13,27 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    font-family: 'Arial', sans-serif;  /* Fonte mais legível */
+    font-size: 18px;  /* Aumentando o tamanho da fonte do corpo */
 }
 
 .caixaPrincipal {
     background-color: var(--cor-principal);
     width: 90%;
+    max-width: 900px;  /* Limita a largura máxima */
     text-align: center;
     padding: 20px;
+    border-radius: 10px;  /* Arredondando os cantos da caixa */
 }
 
 h1 {
     color: var(--cor-destaque);
+    font-size: 32px;  /* Tamanho maior para o título */
+    margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: var(--cor-destaque);
-    color: var(--cor-secundaria);
+.caixaPerguntas, .caixaAlternativas, .caixaResultado {
+    margin-bottom: 20px;
 }
 
 button {
@@ -37,6 +42,18 @@ button {
     border: none;
     border-radius: 15px;
     padding: 15px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;  /* Efeito de transformação */
     margin: 10px;
+    font-size: 18px;  /* Tamanho de fonte maior nos botões */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--cor-destaque);
+    color: var(--cor-secundaria);
+    transform: scale(1.1);  /* Efeito de aumentar o botão */
+}
+
+button:focus {
+    outline: none;  /* Remover o contorno padrão ao clicar */
 }
