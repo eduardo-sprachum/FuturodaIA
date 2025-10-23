@@ -1,6 +1,6 @@
 const caixaPrincipal = document.querySelector(".caixaPrincipal");
 const caixaPerguntas = document.querySelector(".caixaPerguntas");
-const caixaAlternativas = document.querySelector(".caixaAlternativas");  
+const caixaAlternativas = document.querySelector(".caixaAlternativas");
 const caixaResultado = document.querySelector(".caixaResultado");
 const textoResultado = document.querySelector(".textoResultado");
 
@@ -46,23 +46,23 @@ let atual = 0;
 let historiaFinal = "";
 
 function mostraPergunta() {
-    perguntaAtual = perguntas[atual];
+    const perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
-    mostraAlternativas();
+    mostraAlternativas(perguntaAtual);
 }
 
-function mostraAlternativas() {
+function mostraAlternativas(perguntaAtual) {
     caixaAlternativas.innerHTML = ''; // Limpa as alternativas anteriores
-    for (const alternativa of perguntaAtual.alternativas) {
+    perguntaAtual.alternativas.forEach((alternativa) => {
         const botaoAlternativa = document.createElement("button");
         botaoAlternativa.textContent = alternativa.texto;
         botaoAlternativa.addEventListener('click', () => respostaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativa);
-    }
+    });
 }
 
-function respostaSelecionada(opcaoSelecionada){
-    historiaFinal += opcaoSelecionada.afirmacoes + "\n"; // Adiciona as afirmações à história final
+function respostaSelecionada(alternativaSelecionada) {
+    historiaFinal += alternativaSelecionada.afirmacoes + "\n"; // Acumula as respostas
     atual++;
     if (atual < perguntas.length) {
         mostraPergunta(); // Mostra a próxima pergunta
@@ -76,3 +76,5 @@ function mostraResultado() {
     textoResultado.textContent = historiaFinal;
     caixaAlternativas.innerHTML = ""; // Limpa as alternativas
 }
+
+mostraPergunta(); // Exibe a primeira pergunta
