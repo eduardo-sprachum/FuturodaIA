@@ -73,5 +73,3 @@ function mostraResultado() {
     textoResultado.textContent = historiaFinal;
     caixaAltrnativas.textContent = "";
 }
-
-mostraPergunta();
