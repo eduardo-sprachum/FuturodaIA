@@ -8,42 +8,41 @@ const perguntas = [
     {
         enunciado: "Você acredita que a IA é uma vilã?",
         alternativas: [
-            "Sim",
-            "Não"
+            { texto: "Sim", afirmacoes: "Você acha que a IA pode ser uma ameaça." },
+            { texto: "Não", afirmacoes: "Você acredita que a IA pode ser benéfica." }
         ]
     },
     {
         enunciado: "Consegue imaginar sua vida sem a IA?",
         alternativas: [
-            "Sim",
-            "Não"
+            { texto: "Sim", afirmacoes: "Você imagina um mundo sem IA, com menos dependência de tecnologia." },
+            { texto: "Não", afirmacoes: "Você acha que a IA já faz parte essencial da sua vida." }
         ]
     },
     {
         enunciado: "A IA é perigosa? Rouba nossos dados?",
         alternativas: [
-            "Sim",
-            "Não"
+            { texto: "Sim", afirmacoes: "Você acredita que a IA pode ser uma ameaça à privacidade." },
+            { texto: "Não", afirmacoes: "Você acredita que a IA pode ser controlada e protegida." }
         ]
     },
     {
         enunciado: "A IA vai acabar com as profissões existentes hoje?",
         alternativas: [
-            "Sim",
-            "Não"
+            { texto: "Sim", afirmacoes: "Você acredita que muitas profissões serão automatizadas." },
+            { texto: "Não", afirmacoes: "Você acredita que a IA ajudará a criar novas oportunidades." }
         ]
     },
-        {
+    {
         enunciado: "Você acha que a IA pode dominar o mundo e subjugar a raça humana?",
         alternativas: [
-            "Sim",
-            "Não"
+            { texto: "Sim", afirmacoes: "Você teme um futuro dominado por IA." },
+            { texto: "Não", afirmacoes: "Você acredita que a IA pode ser controlada e utilizada para o bem." }
         ]
     },
 ];
 
 let atual = 0;
-let perguntaAtual;
 let historiaFinal = "";
 
 function mostraPergunta() {
@@ -53,23 +52,27 @@ function mostraPergunta() {
 }
 
 function mostraAlternativas() {
+    caixaAlternativas.innerHTML = ''; // Limpa as alternativas anteriores
     for (const alternativa of perguntaAtual.alternativas) {
-        const botaoAlternativas = document.createElement("button");
-        botaoAlternativas.textContent = alternativa.texto;
-        botaoAlternativas.addEventListener('click', () => respostaSelecionada(alternativas));
-        caixaAlternativas.appendChild(botaoAlternativas);
+        const botaoAlternativa = document.createElement("button");
+        botaoAlternativa.textContent = alternativa.texto;
+        botaoAlternativa.addEventListener('click', () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botaoAlternativa);
     }
 }
 
 function respostaSelecionada(opcaoSelecionada){
-    const afirmacoes = opcaoSelecionada.afirmacoes;
-    historiaFinal = afirmacoes;
+    historiaFinal += opcaoSelecionada.afirmacoes + "\n"; // Adiciona as afirmações à história final
     atual++;
-    mostraPergunta();
+    if (atual < perguntas.length) {
+        mostraPergunta(); // Mostra a próxima pergunta
+    } else {
+        mostraResultado(); // Mostra o resultado quando todas as perguntas forem respondidas
+    }
 }
 
 function mostraResultado() {
-    caixaPerguntas.textContent = "Ex: 2049...";
+    caixaPerguntas.textContent = "Resultado Final:";
     textoResultado.textContent = historiaFinal;
-    caixaAltrnativas.textContent = "";
+    caixaAlternativas.innerHTML = ""; // Limpa as alternativas
 }
