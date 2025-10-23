@@ -4,6 +4,11 @@ const caixaAlternativas = document.querySelector(".caixaAlternativas");
 const caixaResultado = document.querySelector(".caixaResultado");
 const textoResultado = document.querySelector(".textoResultado");
 
+const botaoEspecialistas = document.querySelector(".botaoEspecialistas");
+const botaoRespostas = document.querySelector(".botaoRespostas");
+const caixaEspecialistas = document.querySelector(".caixaEspecialistas");
+const caixaRespostas = document.querySelector(".caixaRespostas");
+
 const perguntas = [
     {
         enunciado: "Você acredita que a IA é uma vilã?",
@@ -75,6 +80,39 @@ function mostraResultado() {
     caixaPerguntas.textContent = "Resultado Final:";
     textoResultado.textContent = historiaFinal;
     caixaAlternativas.innerHTML = ""; // Limpa as alternativas
+    mostraBotoesExtras(); // Mostra os botões extras
+}
+
+function mostraBotoesExtras() {
+    caixaResultado.innerHTML = `
+        <button class="botaoEspecialistas">Confira a opinião de especialistas</button>
+        <button class="botaoRespostas">Olhe nossas respostas ao quiz</button>
+    `;
+    botaoEspecialistas.addEventListener('click', mostrarEspecialistas);
+    botaoRespostas.addEventListener('click', mostrarRespostas);
+}
+
+function mostrarEspecialistas() {
+    caixaEspecialistas.innerHTML = `
+        <h2>Opinião de Especialistas</h2>
+        <p><strong>John Smart</strong>: "Temo — por enquanto — que, embora haja uma minoria crescente se beneficiando cada vez mais significativamente dessas ferramentas, a maioria das pessoas continuará a abrir mão de sua autonomia, criatividade, capacidade de decisão e outras habilidades vitais para essas IAs ainda primitivas."</p>
+        <p><strong>Elizabeth Renieris</strong>: "Os avanços na IA ampliarão a escala da tomada de decisão automatizada que é tendenciosa, discriminatória, excludente ou injusta. Ao mesmo tempo em que é inescrutável e incontestável."</p>
+    `;
+    caixaRespostas.style.display = 'none';  // Esconde as respostas ao quiz
+    caixaEspecialistas.style.display = 'block';  // Exibe as opiniões dos especialistas
+}
+
+function mostrarRespostas() {
+    caixaRespostas.innerHTML = `
+        <h2>Respostas ao Quiz</h2>
+        <p><strong>Pergunta 1:</strong> Você acredita que a IA é uma vilã?</p>
+        <p>Discussão: A IA é um tema polêmico, e depende da perspectiva do indivíduo sobre os riscos e benefícios dessa tecnologia. Alguns veem a IA como uma ameaça, enquanto outros acreditam em seu potencial para trazer avanços.</p>
+        <p><strong>Pergunta 2:</strong> Consegue imaginar sua vida sem a IA?</p>
+        <p>Discussão: A IA tem se tornado parte de nosso cotidiano, seja em assistentes pessoais, recomendações ou até mesmo na medicina. A vida sem ela seria uma grande mudança.</p>
+        <!-- Continue para as outras perguntas -->
+    `;
+    caixaEspecialistas.style.display = 'none';  // Esconde as opiniões dos especialistas
+    caixaRespostas.style.display = 'block';  // Exibe as respostas do quiz
 }
 
 mostraPergunta(); // Exibe a primeira pergunta
