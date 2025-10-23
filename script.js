@@ -102,17 +102,4 @@ function mostrarEspecialistas() {
     caixaEspecialistas.style.display = 'block';  // Exibe as opiniões dos especialistas
 }
 
-function mostrarRespostas() {
-    caixaRespostas.innerHTML = `
-        <h2>Respostas ao Quiz</h2>
-        <p><strong>Pergunta 1:</strong> Você acredita que a IA é uma vilã?</p>
-        <p>Discussão: A IA é um tema polêmico, e depende da perspectiva do indivíduo sobre os riscos e benefícios dessa tecnologia. Alguns veem a IA como uma ameaça, enquanto outros acreditam em seu potencial para trazer avanços.</p>
-        <p><strong>Pergunta 2:</strong> Consegue imaginar sua vida sem a IA?</p>
-        <p>Discussão: A IA tem se tornado parte de nosso cotidiano, seja em assistentes pessoais, recomendações ou até mesmo na medicina. A vida sem ela seria uma grande mudança.</p>
-        <!-- Continue para as outras perguntas -->
-    `;
-    caixaEspecialistas.style.display = 'none';  // Esconde as opiniões dos especialistas
-    caixaRespostas.style.display = 'block';  // Exibe as respostas do quiz
-}
-
 mostraPergunta(); // Exibe a primeira pergunta
